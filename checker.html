@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Symptom Checker — Sanjeevani Setu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="checker.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+
+    <a href="index.html" class="logo">
+      Sanjeevani&nbsp;<span>Setu</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#features">What it does</a>
+      <a href="index.html#impact">Real impact</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      ☰
+    </button>
+
+  </div>
+</header>
+
+<main class="checker-page">
+  <div class="wrap checker-wrap">
+
+    <h1>Tell us what you're feeling</h1>
+
+    <p class="checker-intro">
+      Select everything that applies. This takes about 30 seconds and gives
+      you an honest next step — not a diagnosis.
+    </p>
+
+    <!-- =========================
+         SYMPTOM CHECKER FORM
+         ========================= -->
+
+    <form id="checkerForm" class="checker-form">
+
+      <fieldset>
+        <legend>Who is this for?</legend>
+
+        <select id="ageGroup" name="ageGroup">
+          <option value="adult">An adult (18–59)</option>
+          <option value="child">A child under 5</option>
+          <option value="elderly">An adult over 60</option>
+          <option value="pregnant">A pregnant person</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Symptoms — select all that apply</legend>
+
+        <div class="symptom-grid">
+
+          <label>
+            <input type="checkbox" name="symptom" value="fever_mild">
+            Mild fever (under 3 days)
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="fever_high">
+            High fever (over 3 days)
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="cough">
+            Cough
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="breathlessness">
+            Difficulty breathing
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="chest_pain">
+            Chest pain or pressure
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="body_ache">
+            Body ache
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="headache_severe">
+            Severe headache
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="vomiting">
+            Vomiting
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="diarrhea">
+            Diarrhea
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="blood_in_stool_vomit">
+            Blood in vomit or stool
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="fainting">
+            Fainting or extreme weakness
+          </label>
+
+          <label>
+            <input type="checkbox" name="symptom" value="rash">
+            Skin rash
+          </label>
+
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">
+        Check my risk level
+      </button>
+
+    </form>
+
+
+    <!-- =========================
+         RISK RESULT
+         ========================= -->
+
+    <section id="result" class="result" hidden aria-live="polite">
+
+      <p class="result-badge" id="resultBadge"></p>
+
+      <p id="resultMessage"></p>
+
+      <p id="resultAction" class="result-action"></p>
+
+      <button type="button" class="btn btn-ghost" id="startOver">
+        Start over
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         DOCTOR BOOKING SECTION
+         ========================= -->
+
+    <section id="booking" class="booking-section" hidden>
+
+      <h2>Connect with a doctor</h2>
+
+      <p>
+        Based on your risk level, you may want to speak with a healthcare
+        professional. Select an available doctor below.
+      </p>
+
+      <!-- Doctors loaded from GET /api/doctors -->
+      <div id="doctorList" class="doctor-list">
+        Loading doctors…
+      </div>
+
+
+      <!-- Booking form -->
+      <form id="bookingForm" class="booking-form" hidden>
+
+        <h3 id="bookingWithLabel">Booking with doctor</h3>
+
+        <!-- Stores selected doctor ID -->
+        <input type="hidden" id="selectedDoctorId">
+
+        <label for="patientName">
+          Your name
+        </label>
+
+        <input
+          type="text"
+          id="patientName"
+          name="patientName"
+          placeholder="Enter your name"
+          required
+        >
+
+
+        <label for="patientPhone">
+          Phone number
+        </label>
+
+        <input
+          type="tel"
+          id="patientPhone"
+          name="patientPhone"
+          placeholder="Enter your phone number"
+          required
+        >
+
+
+        <label for="preferredTime">
+          Preferred appointment time
+        </label>
+
+        <input
+          type="datetime-local"
+          id="preferredTime"
+          name="preferredTime"
+          required
+        >
+
+
+        <button type="submit" class="btn btn-primary">
+          Request appointment
+        </button>
+
+      </form>
+
+
+      <!-- Booking response -->
+      <p
+        id="bookingConfirmation"
+        class="booking-confirmation"
+        hidden
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- =========================
+         DISCLAIMER
+         ========================= -->
+
+    <p class="disclaimer">
+      This tool gives preliminary guidance based on the symptoms you select.
+      It cannot diagnose any condition. If you are in doubt, or symptoms
+      worsen, contact a doctor or your nearest health centre immediately.
+    </p>
+
+  </div>
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>
+      Sanjeevani Setu — a student project for Smart India Hackathon.
+    </p>
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+<script src="checker.js"></script>
+
+</body>
+</html>

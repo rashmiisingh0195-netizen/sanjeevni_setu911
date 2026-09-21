@@ -1,0 +1,100 @@
+.checker-page {
+  padding: 56px 0 80px;
+}
+
+.checker-wrap {
+  max-width: 720px;
+}
+
+.checker-intro {
+  color: #4a554a;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+legend {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+#ageGroup {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--white);
+}
+
+.symptom-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+}
+
+.symptom-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.symptom-grid label:hover { background: var(--sage); }
+
+.symptom-grid input { width: 16px; height: 16px; }
+
+.checker-form .btn { margin-top: 8px; }
+
+/* ---------- Result card ---------- */
+.result {
+  margin-top: 36px;
+  padding: 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--sage);
+}
+
+.result-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin: 0 0 12px;
+}
+
+.result[data-level="low"] .result-badge { background: #DCEFE0; color: #1F6B37; }
+.result[data-level="medium"] .result-badge { background: #FBE8CC; color: #935A0C; }
+.result[data-level="high"] .result-badge { background: #F6D4CC; color: var(--terracotta); }
+
+.result-action {
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+
+.disclaimer {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: #5b665a;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  max-width: none;
+}
+
+@media (max-width: 560px) {
+  .symptom-grid { grid-template-columns: 1fr; }
+}

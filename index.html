@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjeevani Setu — A bridge to care, in your own language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="index.html" class="logo">Sanjeevani&nbsp;<span>Setu</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">What it does</a>
+      <a href="#impact">Real impact</a>
+    </nav>
+    <a href="checker.html" class="btn btn-primary">Check my symptoms</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>The nearest doctor is often 40&nbsp;km away.<br>Guidance shouldn't be.</h1>
+        <p class="hero-sub">Sanjeevani Setu gives anyone — with or without a smartphone — an instant, honest read on their symptoms, in their own language, so they know exactly what to do next: rest, visit a clinic, or seek urgent care.</p>
+        <div class="hero-actions">
+          <a href="checker.html" class="btn btn-primary">Check my symptoms</a>
+          <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+        </div>
+        <p class="hero-note">Free to use · Works over SMS · Not a replacement for a doctor</p>
+      </div>
+
+      <div class="hero-demo" aria-hidden="true">
+        <div class="demo-window">
+          <div class="demo-window-bar"><span></span><span></span><span></span></div>
+          <div class="demo-chat">
+            <div class="bubble bubble-user">I have had fever and body ache for 2 days</div>
+            <div class="bubble bubble-bot">
+              <strong>Risk: Medium</strong>
+              <p>This looks like it needs a check-up, but isn't an emergency. Visit your nearest clinic within 2 days. Drink fluids and rest until then.</p>
+            </div>
+            <div class="bubble bubble-user">Is it dengue?</div>
+            <div class="bubble bubble-bot">
+              <p>I can't diagnose that — but a doctor can test for it quickly. The clinic in Basantpur PHC is open until 6pm today.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <div class="wrap">
+      <h2>From symptom to solution, in three steps</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <h3>Describe what you feel</h3>
+          <p>By app, or by sending an SMS if there's no smartphone or internet nearby. Available in Hindi and regional languages.</p>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <h3>Get an honest risk level</h3>
+          <p>Low, medium, or high — with plain next steps. No jargon, no vague "consult a doctor" with nothing else.</p>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <h3>Get connected to real care</h3>
+          <p>Nearest open clinic, medicine stock, or a teleconsultation booking — whichever the moment calls for.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="wrap">
+      <h2>Built for the gaps other apps leave open</h2>
+      <div class="feature-list">
+        <div class="feature-row">
+          <h3>Works without a smartphone</h3>
+          <p>An SMS/IVR fallback means the platform reaches people on basic feature phones — not just those with data plans, which excludes a huge share of rural India from most health apps today.</p>
+        </div>
+        <div class="feature-row feature-row-alt">
+          <h3>Speaks the patient's language</h3>
+          <p>Symptom input and results are available in regional languages, removing the English-literacy barrier that quietly locks most people out of digital health tools.</p>
+        </div>
+        <div class="feature-row">
+          <h3>Digital health record that travels</h3>
+          <p>A patient's history follows them — so a doctor in a different town isn't starting from zero, and repeat tests aren't wasted money.</p>
+        </div>
+        <div class="feature-row feature-row-alt">
+          <h3>Early-warning map for health authorities</h3>
+          <p>Anonymised, aggregated symptom clusters are plotted geographically, so local health officers can spot a possible outbreak days before it would otherwise surface.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact" id="impact">
+    <div class="wrap impact-grid">
+      <blockquote>
+        "I didn't know if my son's fever was serious enough for the 2-hour bus ride into town. Sanjeevani Setu told me to go — that day. The doctor said we came just in time."
+      </blockquote>
+      <p class="impact-caption">— based on a real gap this platform is designed to close, for families in villages far from the nearest clinic</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Sanjeevani Setu — a student project for Smart India Hackathon.</p>
+    <p class="footer-disclaimer">This tool provides preliminary guidance only and does not replace professional medical diagnosis.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
