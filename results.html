@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sanjeevani Setu — Health Assessment Result</title>
+
+    <meta
+        name="description"
+        content="View your Sanjeevani Setu health assessment result and recommended next steps."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="results.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                <div class="logo-icon">✚</div>
+
+                <div class="logo-text">
+                    <span class="logo-title">Sanjeevani Setu</span>
+                    <span class="logo-subtitle">A bridge to care</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="checker.html">Symptom Checker</a>
+                <a href="doctors.html">Find Doctor</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                type="button"
+                aria-label="Open menu"
+            >
+                ☰
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="results-page">
+
+        <!-- Page Heading -->
+
+        <section class="page-heading">
+            <div class="heading-container">
+
+                <div class="heading-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <p class="eyebrow">HEALTH ASSESSMENT</p>
+
+                    <h1>Your Assessment Result</h1>
+
+                    <p class="heading-description">
+                        Based on the symptoms you entered, here is your
+                        preliminary health guidance.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= RESULT SECTION ================= -->
+
+        <section class="result-section">
+
+            <div class="result-container">
+
+                <!-- Risk Card -->
+
+                <div class="risk-card" id="riskCard">
+
+                    <div class="risk-card-top">
+
+                        <div class="risk-icon" id="riskIcon">
+                            !
+                        </div>
+
+                        <div class="risk-info">
+
+                            <p class="small-label">
+                                ASSESSMENT LEVEL
+                            </p>
+
+                            <h2 id="riskLevel">
+                                Medium Risk
+                            </h2>
+
+                            <p id="riskSummary">
+                                Your symptoms may require attention.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="risk-score">
+                        <span>Assessment Score</span>
+
+                        <strong id="riskScore">
+                            4
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= SYMPTOMS CARD ================= -->
+
+                <div class="content-card">
+
+                    <div class="card-heading">
+
+                        <div class="card-icon">
+                            🩺
+                        </div>
+
+                        <div>
+                            <h2>Symptoms Reported</h2>
+
+                            <p>
+                                Symptoms selected during your assessment
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="symptoms-list"
+                        id="symptomsList"
+                    >
+                        <!-- JavaScript will insert symptoms -->
+                    </div>
+
+                </div>
+
+
+                <!-- ================= RECOMMENDATION ================= -->
+
+                <div class="recommendation-card">
+
+                    <div class="recommendation-icon">
+                        💡
+                    </div>
+
+                    <div class="recommendation-content">
+
+                        <p class="small-label">
+                            RECOMMENDED NEXT STEP
+                        </p>
+
+                        <h2 id="recommendationTitle">
+                            Consult a healthcare professional
+                        </h2>
+
+                        <p id="recommendationText">
+                            Based on your assessment, consider visiting
+                            a nearby healthcare professional for further
+                            evaluation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACTION BUTTONS ================= -->
+
+                <div class="action-section">
+
+                    <h2>What would you like to do?</h2>
+
+                    <p class="action-description">
+                        Choose an option based on your assessment.
+                    </p>
+
+                    <div class="action-buttons">
+
+                        <a
+                            href="doctors.html"
+                            class="action-btn primary-btn"
+                        >
+                            <span>👨‍⚕️</span>
+                            Find a Doctor
+                        </a>
+
+                        <a
+                            href="appointment.html"
+                            class="action-btn secondary-btn"
+                        >
+                            <span>📅</span>
+                            Book Appointment
+                        </a>
+
+                        <a
+                            href="checker.html"
+                            class="action-btn outline-btn"
+                        >
+                            <span>↻</span>
+                            Check Again
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= EMERGENCY ================= -->
+
+                <div
+                    class="emergency-card"
+                    id="emergencyCard"
+                >
+
+                    <div class="emergency-icon">
+                        ⚠
+                    </div>
+
+                    <div class="emergency-content">
+
+                        <h2>Need urgent medical help?</h2>
+
+                        <p>
+                            If you are experiencing severe symptoms,
+                            difficulty breathing, chest pain, fainting,
+                            heavy bleeding, or another medical emergency,
+                            seek emergency medical care immediately.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="emergency.html"
+                        class="emergency-btn"
+                    >
+                        Emergency Help
+                    </a>
+
+                </div>
+
+
+                <!-- ================= DISCLAIMER ================= -->
+
+                <div class="disclaimer">
+
+                    <strong>Important:</strong>
+
+                    This assessment is for preliminary guidance only.
+                    It does not provide a medical diagnosis and should
+                    not replace advice from a qualified healthcare
+                    professional.
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+                    <div class="logo-icon">✚</div>
+
+                    <div>
+                        <strong>Sanjeevani Setu</strong>
+
+                        <span>
+                            A bridge to care, in your own language
+                        </span>
+                    </div>
+                </div>
+
+                <p>
+                    Making healthcare guidance easier to understand
+                    and access.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="checker.html">Symptom Checker</a>
+                <a href="doctors.html">Doctors</a>
+                <a href="dashboard.html">Dashboard</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Sanjeevani Setu. For preliminary health guidance.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="results.js"></script>
+
+</body>
+</html>

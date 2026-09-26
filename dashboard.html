@@ -1,0 +1,336 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard — Sanjeevani Setu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+
+            <div>
+                <h2>Sanjeevani Setu</h2>
+                <span>Bridge to Care</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="dashboard.html" class="nav-item active">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="checker.html" class="nav-item">
+                <span class="nav-icon">🩺</span>
+                <span>Symptom Checker</span>
+            </a>
+
+            <a href="#doctors" class="nav-item">
+                <span class="nav-icon">👨‍⚕️</span>
+                <span>Doctors</span>
+            </a>
+
+            <a href="#assessments" class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span>Assessments</span>
+            </a>
+
+            <a href="#appointments" class="nav-item">
+                <span class="nav-icon">📅</span>
+                <span>Appointments</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">←</span>
+                <span>Back to Home</span>
+            </a>
+
+            <button class="logout-btn" id="logoutBtn">
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                <p>Healthcare Dashboard</p>
+                <h1>Good day 👋</h1>
+            </div>
+
+            <div class="profile">
+
+                <div class="notification">
+                    🔔
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="profile-avatar">
+                    U
+                </div>
+
+                <div class="profile-info">
+                    <strong>User</strong>
+                    <span>Patient</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Dashboard Container -->
+        <div class="dashboard-container">
+
+            <!-- Welcome Banner -->
+            <section class="welcome-card">
+
+                <div class="welcome-text">
+                    <span class="eyebrow">YOUR HEALTH, YOUR PRIORITY</span>
+
+                    <h2>
+                        Welcome to your
+                        <span>health dashboard.</span>
+                    </h2>
+
+                    <p>
+                        Track your health assessments, find available doctors,
+                        and get connected to the right care.
+                    </p>
+
+                    <a href="checker.html" class="primary-btn">
+                        Check Symptoms →
+                    </a>
+                </div>
+
+                <div class="welcome-illustration">
+                    <div class="heart-circle">♥</div>
+                    <div class="pulse-line">
+                        ──╱╲──╱╲──╱╲──
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Summary Cards -->
+            <section class="section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">OVERVIEW</span>
+                        <h2>Health Summary</h2>
+                    </div>
+                </div>
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+                        <div class="card-icon blue">🩺</div>
+
+                        <div>
+                            <span>Total Assessments</span>
+                            <strong id="totalAssessments">0</strong>
+                        </div>
+
+                        <small>Health checks completed</small>
+                    </div>
+
+
+                    <div class="summary-card">
+                        <div class="card-icon green">✓</div>
+
+                        <div>
+                            <span>Low Risk</span>
+                            <strong id="lowRisk">0</strong>
+                        </div>
+
+                        <small>Assessments marked low risk</small>
+                    </div>
+
+
+                    <div class="summary-card">
+                        <div class="card-icon orange">!</div>
+
+                        <div>
+                            <span>Medium Risk</span>
+                            <strong id="mediumRisk">0</strong>
+                        </div>
+
+                        <small>Assessments needing attention</small>
+                    </div>
+
+
+                    <div class="summary-card">
+                        <div class="card-icon red">⚠</div>
+
+                        <div>
+                            <span>High Risk</span>
+                            <strong id="highRisk">0</strong>
+                        </div>
+
+                        <small>Assessments needing urgent care</small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Doctors Section -->
+            <section class="section" id="doctors">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">CARE NETWORK</span>
+                        <h2>Available Doctors</h2>
+                    </div>
+
+                    <button class="text-btn" id="refreshDoctors">
+                        Refresh ↻
+                    </button>
+
+                </div>
+
+
+                <div class="doctor-grid" id="doctorGrid">
+
+                    <div class="loading-card">
+                        <div class="loader"></div>
+                        <p>Loading doctors...</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Assessments -->
+            <section class="section" id="assessments">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">HEALTH RECORD</span>
+                        <h2>Assessment History</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="table-card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Assessment</th>
+                                    <th>Symptoms</th>
+                                    <th>Age Group</th>
+                                    <th>Risk Level</th>
+                                    <th>Region</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="assessmentTable">
+
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        No assessment history available.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Appointment Section -->
+            <section class="section" id="appointments">
+
+                <div class="appointment-card">
+
+                    <div class="appointment-icon">
+                        📅
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">NEXT STEP</span>
+                        <h2>Need medical assistance?</h2>
+
+                        <p>
+                            Use the symptom checker to understand your risk level
+                            and connect with available healthcare providers.
+                        </p>
+                    </div>
+
+                    <a href="checker.html" class="secondary-btn">
+                        Start Assessment
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                © 2026 Sanjeevani Setu · A bridge to care, in your own language.
+            </p>
+        </footer>
+
+    </main>
+
+
+    <script src="dashboard.js"defer></script>
+
+</body>
+</html>
+```

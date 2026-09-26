@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sanjeevani Setu - Language</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #eef8f1;
+        }
+
+        .language-box {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+
+            padding: 40px 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #176b45;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .language-btn {
+            width: 100%;
+            padding: 18px;
+
+            margin: 10px 0;
+
+            border: 2px solid #d7e8de;
+            border-radius: 12px;
+
+            background: white;
+
+            font-size: 20px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .language-btn:hover {
+            background: #e9f7ef;
+            border-color: #2e8b57;
+        }
+
+        .language-btn span {
+            display: block;
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="language-box">
+
+        <div class="logo">🏥</div>
+
+        <h1>Sanjeevani Setu</h1>
+
+        <p class="subtitle">
+            अपनी भाषा में स्वास्थ्य सहायता
+        </p>
+
+        <h2 data-i18n="chooseLanguage">
+            अपनी भाषा चुनें
+        </h2>
+
+        <button
+            class="language-btn"
+            onclick="selectLanguage('hi')">
+
+            🇮🇳 हिंदी
+
+            <span>
+                Hindi
+            </span>
+
+        </button>
+
+        <button
+            class="language-btn"
+            onclick="selectLanguage('en')">
+
+            🇬🇧 English
+
+            <span>
+                English
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <script src="bhasa.js"></script>
+
+    <script>
+
+        function selectLanguage(language) {
+
+            setLanguage(language);
+
+            // Go to homepage
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find a Doctor | Sanjeevani Setu</title>
+
+    <link rel="stylesheet" href="doctors.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">✚</div>
+
+            <div class="logo-text">
+                <span>Sanjeevani</span>
+                <strong>Setu</strong>
+            </div>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="checker.html">Symptom Checker</a>
+            <a href="doctors.html" class="active">Find Doctor</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- ================= MOBILE MENU ================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="index.html">Home</a>
+        <a href="checker.html">Symptom Checker</a>
+        <a href="doctors.html">Find Doctor</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html">Login</a>
+
+    </div>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    SANJEEVANI SETU HEALTHCARE
+                </span>
+
+                <h1>
+                    Find the right
+                    <span>doctor for you.</span>
+                </h1>
+
+                <p>
+                    Find healthcare professionals based on specialty,
+                    location and availability.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH / FILTER ================= -->
+
+        <section class="search-section">
+
+            <div class="search-card">
+
+                <div class="search-header">
+
+                    <div>
+                        <h2>Find a Doctor</h2>
+                        <p>
+                            Search for a healthcare professional near you.
+                        </p>
+                    </div>
+
+                    <span class="doctor-count" id="doctorCount">
+                        0 doctors
+                    </span>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <!-- Search -->
+
+                    <div class="filter-group search-group">
+
+                        <label for="searchInput">
+                            Search
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">⌕</span>
+
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Doctor name or specialty..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Specialty -->
+
+                    <div class="filter-group">
+
+                        <label for="specialtyFilter">
+                            Specialty
+                        </label>
+
+                        <select id="specialtyFilter">
+
+                            <option value="all">
+                                All Specialties
+                            </option>
+
+                            <option value="General Physician">
+                                General Physician
+                            </option>
+
+                            <option value="Pediatrician">
+                                Pediatrician
+                            </option>
+
+                            <option value="Cardiologist">
+                                Cardiologist
+                            </option>
+
+                            <option value="Gynecologist">
+                                Gynecologist
+                            </option>
+
+                            <option value="Dermatologist">
+                                Dermatologist
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="filter-group">
+
+                        <label for="locationFilter">
+                            Location
+                        </label>
+
+                        <select id="locationFilter">
+
+                            <option value="all">
+                                All Locations
+                            </option>
+
+                            <option value="Basantpur PHC">
+                                Basantpur PHC
+                            </option>
+
+                            <option value="District Hospital, Ranchi">
+                                District Hospital, Ranchi
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Availability -->
+
+                    <div class="filter-group">
+
+                        <label for="availabilityFilter">
+                            Availability
+                        </label>
+
+                        <select id="availabilityFilter">
+
+                            <option value="all">
+                                Any
+                            </option>
+
+                            <option value="available">
+                                Available
+                            </option>
+
+                            <option value="unavailable">
+                                Currently unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DOCTORS ================= -->
+
+        <section class="doctors-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        HEALTHCARE PROFESSIONALS
+                    </span>
+
+                    <h2>Available doctors</h2>
+                </div>
+
+                <button
+                    class="clear-btn"
+                    id="clearFiltersBtn"
+                >
+                    Clear filters
+                </button>
+
+            </div>
+
+
+            <!-- Doctor Cards -->
+
+            <div
+                class="doctor-grid"
+                id="doctorGrid"
+            >
+                <!-- JavaScript will add doctors here -->
+            </div>
+
+
+            <!-- No results -->
+
+            <div
+                class="no-results"
+                id="noResults"
+                hidden
+            >
+
+                <div class="no-results-icon">
+                    🔍
+                </div>
+
+                <h3>No doctors found</h3>
+
+                <p>
+                    Try changing your search or filters.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    id="resetBtn"
+                >
+                    Reset filters
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HELP SECTION ================= -->
+
+        <section class="help-section">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    💙
+                </div>
+
+                <div class="help-content">
+
+                    <h3>Not sure which doctor you need?</h3>
+
+                    <p>
+                        Use our symptom checker to understand your
+                        symptoms and get guidance about the appropriate
+                        level of care.
+                    </p>
+
+                </div>
+
+                <a
+                    href="checker.html"
+                    class="primary-btn"
+                >
+                    Check Symptoms
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-logo">
+                    ✚ Sanjeevani Setu
+                </div>
+
+                <p>
+                    A bridge to care, in your own language.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="checker.html">Symptom Checker</a>
+                <a href="doctors.html">Find Doctor</a>
+                <a href="login.html">Login</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Sanjeevani Setu. For healthcare guidance and
+            connection to care.
+        </div>
+
+    </footer>
+
+
+    <script src="doctors.js"></script>
+
+</body>
+</html>

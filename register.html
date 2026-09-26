@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Sanjeevani Setu</title>
+
+    <link rel="stylesheet" href="register.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-icon">
+                ✚
+            </div>
+
+            <div class="brand-name">
+                <span>Sanjeevani</span>
+                <strong>Setu</strong>
+            </div>
+
+        </a>
+
+        <a href="login.html" class="back-login">
+            Already have an account?
+            <strong>Login</strong>
+        </a>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="register-page">
+
+        <!-- LEFT INFORMATION PANEL -->
+
+        <section class="info-panel">
+
+            <div class="info-content">
+
+                <span class="eyebrow">
+                    SANJEEVANI SETU
+                </span>
+
+                <h1>
+                    Your journey to
+                    <span>better care</span>
+                    starts here.
+                </h1>
+
+                <p class="intro">
+                    Create your account to access healthcare guidance,
+                    symptom assessment, doctor discovery and appointment
+                    services in one place.
+                </p>
+
+
+                <!-- Benefits -->
+
+                <div class="benefits">
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Health Assessment</h3>
+
+                            <p>
+                                Understand your symptoms and
+                                receive appropriate care guidance.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Find Healthcare Providers</h3>
+
+                            <p>
+                                Discover doctors and healthcare
+                                facilities based on your needs.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>Manage Your Care</h3>
+
+                            <p>
+                                Keep track of appointments and
+                                health assessment history.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGISTRATION FORM -->
+
+        <section class="form-panel">
+
+            <div class="form-card">
+
+                <div class="form-header">
+
+                    <div class="mobile-brand">
+                        <div class="mobile-brand-icon">
+                            ✚
+                        </div>
+
+                        <div>
+                            <span>Sanjeevani</span>
+                            <strong>Setu</strong>
+                        </div>
+                    </div>
+
+                    <span class="form-label">
+                        CREATE ACCOUNT
+                    </span>
+
+                    <h2>
+                        Join Sanjeevani Setu
+                    </h2>
+
+                    <p>
+                        Enter your details to create your account.
+                    </p>
+
+                </div>
+
+
+                <!-- Error / Success Message -->
+
+                <div
+                    class="form-message"
+                    id="formMessage"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+                <form id="registerForm" novalidate>
+
+                    <!-- Full Name -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                maxlength="80"
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="nameError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                            <span class="optional">
+                                (Optional)
+                            </span>
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                maxlength="120"
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="emailError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Mobile -->
+
+                    <div class="form-group">
+
+                        <label for="mobile">
+                            Mobile Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="input-box phone-box">
+
+                            <span class="country-code">
+                                +91
+                            </span>
+
+                            <span class="input-divider"></span>
+
+                            <input
+                                type="tel"
+                                id="mobile"
+                                name="mobile"
+                                placeholder="10-digit mobile number"
+                                inputmode="numeric"
+                                autocomplete="tel"
+                                maxlength="10"
+                            >
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="mobileError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                maxlength="72"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                        <!-- Password strength -->
+
+                        <div class="password-strength">
+
+                            <div class="strength-bars">
+
+                                <span id="strength1"></span>
+                                <span id="strength2"></span>
+                                <span id="strength3"></span>
+                                <span id="strength4"></span>
+
+                            </div>
+
+                            <span id="strengthText">
+                                Use at least 8 characters
+                            </span>
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="passwordError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Enter password again"
+                                autocomplete="new-password"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="confirmPasswordToggle"
+                                aria-label="Show confirm password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                        <small
+                            class="field-error"
+                            id="confirmPasswordError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Terms -->
+
+                    <div class="terms-group">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                            >
+
+                            <span class="custom-checkbox"></span>
+
+                            <span class="terms-text">
+                                I agree to the
+                                <a href="#" id="termsLink">
+                                    Terms of Service
+                                </a>
+                                and
+                                <a href="#" id="privacyLink">
+                                    Privacy Policy
+                                .
+                            </span>
+
+                        </label>
+
+                        <small
+                            class="field-error"
+                            id="termsError"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="register-btn"
+                        id="registerBtn"
+                    >
+
+                        <span id="buttonText">
+                            Create Account
+                        </span>
+
+                        <span
+                            class="loading-spinner"
+                            id="loadingSpinner"
+                        ></span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Login -->
+
+                <div class="login-section">
+
+                    <span>
+                        Already have an account?
+                    </span>
+
+                    <a href="login.html">
+                        Log in
+                    </a>
+
+                </div>
+
+
+                <!-- Disclaimer -->
+
+                <div class="disclaimer">
+
+                    <span>🔒</span>
+
+                    <p>
+                        Your information is intended to help provide
+                        healthcare-related services. Do not use this
+                        website as a substitute for emergency medical care.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Sanjeevani Setu
+        </p>
+
+        <span>
+            A bridge to care, in your own language.
+        </span>
+
+    </footer>
+
+
+    <script src="register.js"></script>
+
+</body>
+
+</html>

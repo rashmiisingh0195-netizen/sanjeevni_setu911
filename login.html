@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login — Sanjeevani Setu</title>
+
+    <link rel="stylesheet" href="login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- Left Side -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <div class="logo">
+                    <div class="logo-icon">✚</div>
+                    <span>Sanjeevani Setu</span>
+                </div>
+
+                <div class="welcome-text">
+
+                    <span class="small-label">YOUR BRIDGE TO BETTER CARE</span>
+
+                    <h1>
+                        Healthcare,
+                        <span>in your language.</span>
+                    </h1>
+
+                    <p>
+                        Access symptom checking, healthcare information,
+                        nearby doctors and personalised care guidance
+                        through one simple platform.
+                    </p>
+
+                    <div class="feature-list">
+
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            <div>
+                                <strong>Simple & Accessible</strong>
+                                <p>Easy-to-understand healthcare guidance.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">♥</div>
+                            <div>
+                                <strong>Patient-Centred Care</strong>
+                                <p>Designed around the needs of patients.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">⌁</div>
+                            <div>
+                                <strong>Connected Healthcare</strong>
+                                <p>Bridge patients with healthcare services.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Right Side -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <div class="mobile-logo">
+                    <div class="logo-icon">✚</div>
+                    <span>Sanjeevani Setu</span>
+                </div>
+
+                <div class="form-header">
+
+                    <span class="form-label">WELCOME BACK</span>
+
+                    <h2>Sign in to your account</h2>
+
+                    <p>
+                        Enter your details to continue to Sanjeevani Setu.
+                    </p>
+
+                </div>
+
+
+                <!-- Login Form -->
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email or Mobile Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email or mobile number"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <a href="#" id="forgotPassword">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="toggle-password"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="remember-row">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            <span>Remember me</span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
+                        Sign In
+                    </button>
+
+
+                    <div
+                        id="message"
+                        class="message"
+                        role="alert"
+                    ></div>
+
+                </form>
+
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+
+                <button
+                    type="button"
+                    class="guest-button"
+                    id="guestButton"
+                >
+                    Continue as Guest
+                </button>
+
+
+                <p class="register-text">
+
+                    Don't have an account?
+
+                    <a href="#" id="registerLink">
+                        Create an account
+                    </a>
+
+                </p>
+
+
+                <p class="disclaimer">
+                    Sanjeevani Setu provides healthcare guidance and
+                    does not replace professional medical advice.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="login.js"></script>
+
+</body>
+</html>

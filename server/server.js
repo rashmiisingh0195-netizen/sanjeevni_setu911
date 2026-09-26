@@ -1,142 +1,443 @@
 /* =========================================================================
    SANJEEVANI SETU — API SERVER
    -------------------------------------------------------------------------
-   This is the "backend" — the part of the app that runs on a server
-   (not in the user's browser), and is the only part allowed to talk
-   directly to the database. The frontend (checker.js) sends requests
-   here over HTTP, using fetch().
+   Backend server for the Sanjeevani Setu application.
 
-   To run this server:
-     1. cd server
-     2. npm install
-     3. npm start
-   Then it listens on http://localhost:3000
+   To run:
+   1. cd server
+   2. npm install
+   3. npm start
+
+   Server:
+   http://localhost:3000
    ========================================================================= */
 
 const express = require("express");
 const cors = require("cors");
+const bcrypt = require("bcryptjs");
 const db = require("./db");
 
 const app = express();
 const PORT = 3000;
 
-// STEP 1: Middleware — code that runs on every request before it reaches
-// our routes below.
-app.use(cors());          // Allows the frontend (opened as a local file, or
-                           // a different port) to call this API without
-                           // the browser blocking it for security reasons.
-app.use(express.json());  // Lets us read JSON sent in a request body as
-                           // req.body, instead of raw text.
 
-/* -------------------------------------------------------------------------
+/* =========================================================================
+   MIDDLEWARE
+   ========================================================================= */
+
+app.use(cors());
+
+app.use(express.json());
+
+
+/* =========================================================================
+   ROUTE: Register a new user
+   POST /api/register
+   ========================================================================= */
+
+app.post("/api/register", async (req, res) => {
+    try {
+        const { name, email, mobile, password } = req.body;
+
+        // Basic validation
+        if (!name || !password || (!email && !mobile)) {
+            return res.status(400).json({
+                message: "Name, password, and email or mobile are required"
+            });
+        }
+
+        // Password length validation
+        if (password.length < 6) {
+            return res.status(400).json({
+                message: "Password must contain at least 6 characters"
+            });
+        }
+
+        // Clean input
+        const cleanName = name.trim();
+        const cleanEmail = email ? email.trim().toLowerCase() : null;
+        const cleanMobile = mobile ? mobile.trim() : null;
+
+        // Check whether email already exists
+        if (cleanEmail) {
+            const existingEmail = db
+                .prepare("SELECT id FROM users WHERE email = ?")
+                .get(cleanEmail);
+
+            if (existingEmail) {
+                return res.status(409).json({
+                    message: "An account with this email already exists"
+                });
+            }
+        }
+
+        // Check whether mobile already exists
+        if (cleanMobile) {
+            const existingMobile = db
+                .prepare("SELECT id FROM users WHERE mobile = ?")
+                .get(cleanMobile);
+
+            if (existingMobile) {
+                return res.status(409).json({
+                    message: "An account with this mobile number already exists"
+                });
+            }
+        }
+
+        // Hash password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert user
+        const insertUser = db.prepare(`
+            INSERT INTO users (
+                name,
+                email,
+                mobile,
+                password
+            )
+            VALUES (?, ?, ?, ?)
+        `);
+
+        const result = insertUser.run(
+            cleanName,
+            cleanEmail,
+            cleanMobile,
+            hashedPassword
+        );
+
+        // Return safe user information
+        res.status(201).json({
+            message: "Account created successfully",
+
+            user: {
+                id: result.lastInsertRowid,
+                name: cleanName,
+                email: cleanEmail,
+                mobile: cleanMobile
+            }
+        });
+
+    } catch (error) {
+
+        console.error("Registration error:", error);
+
+        res.status(500).json({
+            message: "Unable to create account"
+        });
+    }
+});
+
+
+/* =========================================================================
+   ROUTE: Login
+   POST /api/login
+
+   User can log in using:
+   - Email
+   OR
+   - Mobile number
+   ========================================================================= */
+
+app.post("/api/login", async (req, res) => {
+    try {
+        const { emailOrMobile, password } = req.body;
+
+        // Validation
+        if (!emailOrMobile || !password) {
+            return res.status(400).json({
+                message: "Email/mobile and password are required"
+            });
+        }
+
+        const loginValue = emailOrMobile.trim();
+
+        // Find user by email OR mobile
+        const user = db
+            .prepare(`
+                SELECT *
+                FROM users
+                WHERE email = ? OR mobile = ?
+            `)
+            .get(
+                loginValue.toLowerCase(),
+                loginValue
+            );
+
+        // User not found
+        if (!user) {
+            return res.status(401).json({
+                message: "Invalid email/mobile or password"
+            });
+        }
+
+        // Compare entered password with stored hash
+        const passwordMatch = await bcrypt.compare(
+            password,
+            user.password
+        );
+
+        if (!passwordMatch) {
+            return res.status(401).json({
+                message: "Invalid email/mobile or password"
+            });
+        }
+
+        // Login successful
+        res.status(200).json({
+            message: "Login successful",
+
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                mobile: user.mobile
+            }
+        });
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        res.status(500).json({
+            message: "Unable to login"
+        });
+    }
+});
+
+
+/* =========================================================================
    ROUTE: Save a symptom assessment
-   Called by checker.js every time someone completes the symptom checker.
-   This is also exactly the data your "outbreak early-warning map"
-   feature would later read from, grouped by region and date.
-   ------------------------------------------------------------------------- */
+   POST /api/assessments
+   ========================================================================= */
+
 app.post("/api/assessments", (req, res) => {
-  const { symptoms, ageGroup, riskLevel, region } = req.body;
 
-  // Basic validation — never trust data coming from the client.
-  if (!symptoms || !ageGroup || !riskLevel) {
-    return res.status(400).json({ error: "symptoms, ageGroup, and riskLevel are required" });
-  }
+    const {
+        symptoms,
+        ageGroup,
+        riskLevel,
+        region
+    } = req.body;
 
-  const insert = db.prepare(`
-    INSERT INTO assessments (symptoms, age_group, risk_level, region)
-    VALUES (?, ?, ?, ?)
-  `);
-  const result = insert.run(JSON.stringify(symptoms), ageGroup, riskLevel, region || "unspecified");
 
-  res.status(201).json({ id: result.lastInsertRowid, message: "Assessment saved" });
-});
+    // Basic validation
+    if (!symptoms || !ageGroup || !riskLevel) {
 
-/* -------------------------------------------------------------------------
-   ROUTE: List available doctors
-   Called by checker.js to show real booking options for medium/high risk
-   results. Supports an optional ?specialty= filter, e.g.
-   /api/doctors?specialty=Pediatrician
-   ------------------------------------------------------------------------- */
-app.get("/api/doctors", (req, res) => {
-  const { specialty } = req.query;
+        return res.status(400).json({
+            error: "symptoms, ageGroup, and riskLevel are required"
+        });
+    }
 
-  let doctors;
-  if (specialty) {
-    doctors = db
-      .prepare("SELECT * FROM doctors WHERE available = 1 AND specialty = ?")
-      .all(specialty);
-  } else {
-    doctors = db.prepare("SELECT * FROM doctors WHERE available = 1").all();
-  }
 
-  res.json(doctors);
-});
+    const insert = db.prepare(`
+        INSERT INTO assessments (
+            symptoms,
+            age_group,
+            risk_level,
+            region
+        )
+        VALUES (?, ?, ?, ?)
+    `);
 
-/* -------------------------------------------------------------------------
-   ROUTE: Book an appointment
-   Called when a patient picks a doctor and submits the booking form.
-   ------------------------------------------------------------------------- */
-app.post("/api/appointments", (req, res) => {
-  const { doctorId, patientName, patientPhone, riskLevel, preferredTime } = req.body;
 
-  if (!doctorId || !patientName || !patientPhone || !preferredTime) {
-    return res.status(400).json({
-      error: "doctorId, patientName, patientPhone, and preferredTime are required",
+    const result = insert.run(
+        JSON.stringify(symptoms),
+        ageGroup,
+        riskLevel,
+        region || "unspecified"
+    );
+
+
+    res.status(201).json({
+        id: result.lastInsertRowid,
+        message: "Assessment saved"
     });
-  }
-
-  // Confirm the doctor actually exists before booking against them.
-  const doctor = db.prepare("SELECT * FROM doctors WHERE id = ?").get(doctorId);
-  if (!doctor) {
-    return res.status(404).json({ error: "No doctor found with that id" });
-  }
-
-  const insert = db.prepare(`
-    INSERT INTO appointments (doctor_id, patient_name, patient_phone, risk_level, preferred_time)
-    VALUES (?, ?, ?, ?, ?)
-  `);
-  const result = insert.run(doctorId, patientName, patientPhone, riskLevel || null, preferredTime);
-
-  res.status(201).json({
-    id: result.lastInsertRowid,
-    message: `Appointment requested with ${doctor.name} at ${doctor.location}`,
-  });
 });
 
-/* -------------------------------------------------------------------------
-   ROUTE: Look up a patient's appointments by phone number
-   A simple stand-in for patient login, good enough for a hackathon demo.
-   ------------------------------------------------------------------------- */
+
+/* =========================================================================
+   ROUTE: List available doctors
+   GET /api/doctors
+   ========================================================================= */
+
+app.get("/api/doctors", (req, res) => {
+
+    const { specialty } = req.query;
+
+    let doctors;
+
+
+    if (specialty) {
+
+        doctors = db
+            .prepare(`
+                SELECT *
+                FROM doctors
+                WHERE available = 1
+                AND specialty = ?
+            `)
+            .all(specialty);
+
+    } else {
+
+        doctors = db
+            .prepare(`
+                SELECT *
+                FROM doctors
+                WHERE available = 1
+            `)
+            .all();
+    }
+
+
+    res.json(doctors);
+});
+
+
+/* =========================================================================
+   ROUTE: Book an appointment
+   POST /api/appointments
+   ========================================================================= */
+
+app.post("/api/appointments", (req, res) => {
+
+    const {
+        doctorId,
+        patientName,
+        patientPhone,
+        riskLevel,
+        preferredTime
+    } = req.body;
+
+
+    // Validation
+    if (
+        !doctorId ||
+        !patientName ||
+        !patientPhone ||
+        !preferredTime
+    ) {
+
+        return res.status(400).json({
+            error: "doctorId, patientName, patientPhone, and preferredTime are required"
+        });
+    }
+
+
+    // Check doctor
+    const doctor = db
+        .prepare(`
+            SELECT *
+            FROM doctors
+            WHERE id = ?
+        `)
+        .get(doctorId);
+
+
+    if (!doctor) {
+
+        return res.status(404).json({
+            error: "No doctor found with that id"
+        });
+    }
+
+
+    // Insert appointment
+    const insert = db.prepare(`
+        INSERT INTO appointments (
+            doctor_id,
+            patient_name,
+            patient_phone,
+            risk_level,
+            preferred_time
+        )
+        VALUES (?, ?, ?, ?, ?)
+    `);
+
+
+    const result = insert.run(
+        doctorId,
+        patientName,
+        patientPhone,
+        riskLevel || null,
+        preferredTime
+    );
+
+
+    res.status(201).json({
+
+        id: result.lastInsertRowid,
+
+        message:
+            `Appointment requested with ${doctor.name} at ${doctor.location}`
+    });
+});
+
+
+/* =========================================================================
+   ROUTE: Look up appointments by phone number
+   GET /api/appointments/:phone
+   ========================================================================= */
+
 app.get("/api/appointments/:phone", (req, res) => {
-  const appointments = db
-    .prepare(
-      `SELECT appointments.*, doctors.name AS doctor_name, doctors.location
-       FROM appointments
-       JOIN doctors ON doctors.id = appointments.doctor_id
-       WHERE patient_phone = ?
-       ORDER BY created_at DESC`
-    )
-    .all(req.params.phone);
 
-  res.json(appointments);
+    const appointments = db
+        .prepare(`
+            SELECT
+                appointments.*,
+                doctors.name AS doctor_name,
+                doctors.location
+            FROM appointments
+
+            JOIN doctors
+            ON doctors.id = appointments.doctor_id
+
+            WHERE patient_phone = ?
+
+            ORDER BY created_at DESC
+        `)
+        .all(req.params.phone);
+
+
+    res.json(appointments);
 });
 
-/* -------------------------------------------------------------------------
-   ROUTE: Basic aggregate stats — the seed of the outbreak-map feature.
-   Returns how many assessments of each risk level came from each region.
-   ------------------------------------------------------------------------- */
+
+/* =========================================================================
+   ROUTE: Regional risk statistics
+   GET /api/stats/regions
+   ========================================================================= */
+
 app.get("/api/stats/regions", (req, res) => {
-  const stats = db
-    .prepare(
-      `SELECT region, risk_level, COUNT(*) AS count
-       FROM assessments
-       GROUP BY region, risk_level`
-    )
-    .all();
 
-  res.json(stats);
+    const stats = db
+        .prepare(`
+            SELECT
+                region,
+                risk_level,
+                COUNT(*) AS count
+
+            FROM assessments
+
+            GROUP BY
+                region,
+                risk_level
+        `)
+        .all();
+
+
+    res.json(stats);
 });
+
+
+/* =========================================================================
+   START SERVER
+   ========================================================================= */
 
 app.listen(PORT, () => {
-  console.log(`Sanjeevani Setu API running at http://localhost:${PORT}`);
+
+    console.log(
+        `Sanjeevani Setu API running at http://localhost:${PORT}`
+    );
+
 });

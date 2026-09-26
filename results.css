@@ -1,0 +1,993 @@
+/* =========================================================
+   SANJEEVANI SETU
+   HEALTH ASSESSMENT RESULT PAGE
+   ========================================================= */
+
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #f5f8f7;
+    color: #18332f;
+    line-height: 1.6;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e3ece9;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.nav-container {
+    width: min(1180px, 92%);
+    margin: auto;
+
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #0f766e;
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.logo-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #16443d;
+}
+
+
+.logo-subtitle {
+    font-size: 11px;
+    color: #70827e;
+}
+
+
+/* Navigation */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #536762;
+
+    transition: 0.2s ease;
+}
+
+
+.nav-links a:hover {
+    color: #0f766e;
+}
+
+
+.mobile-menu-btn {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    font-size: 25px;
+    color: #16443d;
+
+    cursor: pointer;
+}
+
+
+/* ================= PAGE HEADING ================= */
+
+.results-page {
+    min-height: calc(100vh - 76px);
+}
+
+
+.page-heading {
+    background: #e9f5f1;
+    border-bottom: 1px solid #dcebe7;
+
+    padding: 48px 20px;
+}
+
+
+.heading-container {
+    width: min(1000px, 100%);
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.heading-icon {
+    width: 62px;
+    height: 62px;
+
+    flex-shrink: 0;
+
+    border-radius: 18px;
+
+    background: #0f766e;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+.eyebrow {
+    margin-bottom: 5px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #0f766e;
+}
+
+
+.page-heading h1 {
+    font-family: "Fraunces", serif;
+
+    font-size: clamp(32px, 5vw, 48px);
+
+    line-height: 1.1;
+
+    color: #173d37;
+}
+
+
+.heading-description {
+    margin-top: 10px;
+
+    color: #637772;
+
+    font-size: 15px;
+}
+
+
+/* ================= MAIN CONTAINER ================= */
+
+.result-section {
+    padding: 45px 20px 70px;
+}
+
+
+.result-container {
+    width: min(850px, 100%);
+    margin: auto;
+}
+
+
+/* ================= RISK CARD ================= */
+
+.risk-card {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #dce9e5;
+
+    box-shadow: 0 10px 35px rgba(22, 61, 55, 0.07);
+
+    margin-bottom: 20px;
+}
+
+
+.risk-card-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.risk-icon {
+    width: 62px;
+    height: 62px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff3cd;
+    color: #8a6500;
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+.small-label {
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    color: #70827e;
+
+    margin-bottom: 4px;
+}
+
+
+.risk-info h2 {
+    font-family: "Fraunces", serif;
+
+    font-size: 29px;
+
+    color: #183f38;
+}
+
+
+.risk-info p:last-child {
+    margin-top: 3px;
+
+    color: #637772;
+
+    font-size: 14px;
+}
+
+
+.risk-score {
+    margin-top: 25px;
+    padding-top: 18px;
+
+    border-top: 1px solid #e5eeeb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.risk-score span {
+    color: #6c7e79;
+    font-size: 13px;
+}
+
+
+.risk-score strong {
+    font-size: 24px;
+    color: #0f766e;
+}
+
+
+/* ================= CONTENT CARD ================= */
+
+.content-card {
+    background: #ffffff;
+
+    border: 1px solid #dce9e5;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 8px 25px rgba(22, 61, 55, 0.05);
+}
+
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f5f1;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+
+.card-heading h2 {
+    font-family: "Fraunces", serif;
+
+    font-size: 24px;
+
+    color: #183f38;
+}
+
+
+.card-heading p {
+    margin-top: 2px;
+
+    color: #71817d;
+
+    font-size: 13px;
+}
+
+
+/* Symptoms */
+
+.symptoms-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.symptom-tag {
+    padding: 9px 14px;
+
+    border-radius: 30px;
+
+    background: #edf7f4;
+
+    border: 1px solid #d3ebe4;
+
+    color: #23655c;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ================= RECOMMENDATION ================= */
+
+.recommendation-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 27px;
+
+    background: #eff8f5;
+
+    border: 1px solid #cfe7df;
+
+    border-radius: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+.recommendation-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    font-size: 23px;
+}
+
+
+.recommendation-content h2 {
+    font-family: "Fraunces", serif;
+
+    color: #18463e;
+
+    font-size: 23px;
+
+    margin-bottom: 6px;
+}
+
+
+.recommendation-content p:last-child {
+    color: #5f736d;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ================= ACTION SECTION ================= */
+
+.action-section {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.action-section h2 {
+    font-family: "Fraunces", serif;
+
+    font-size: 28px;
+
+    color: #183f38;
+}
+
+
+.action-description {
+    margin-top: 5px;
+
+    color: #71817d;
+
+    font-size: 14px;
+}
+
+
+.action-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 23px;
+}
+
+
+.action-btn {
+    min-height: 50px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.primary-btn {
+    background: #0f766e;
+    color: #ffffff;
+
+    box-shadow: 0 7px 20px rgba(15, 118, 110, 0.2);
+}
+
+
+.primary-btn:hover {
+    background: #0b625b;
+}
+
+
+.secondary-btn {
+    background: #173f38;
+    color: #ffffff;
+}
+
+
+.secondary-btn:hover {
+    background: #102f2a;
+}
+
+
+.outline-btn {
+    background: #ffffff;
+
+    color: #23655c;
+
+    border: 1px solid #c9ddd8;
+}
+
+
+.outline-btn:hover {
+    background: #f1f8f6;
+}
+
+
+/* ================= EMERGENCY ================= */
+
+.emergency-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 22px;
+
+    border-radius: 17px;
+
+    background: #fff8ed;
+
+    border: 1px solid #f0dfbe;
+
+    margin-bottom: 25px;
+}
+
+
+.emergency-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0d4;
+
+    color: #9a6800;
+
+    font-size: 22px;
+}
+
+
+.emergency-content {
+    flex: 1;
+}
+
+
+.emergency-content h2 {
+    font-size: 17px;
+
+    color: #684a13;
+
+    margin-bottom: 3px;
+}
+
+
+.emergency-content p {
+    color: #786746;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.emergency-btn {
+    flex-shrink: 0;
+
+    padding: 11px 16px;
+
+    border-radius: 9px;
+
+    background: #9b5f00;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.emergency-btn:hover {
+    background: #7e4d00;
+}
+
+
+/* ================= DISCLAIMER ================= */
+
+.disclaimer {
+    padding: 17px 20px;
+
+    border-radius: 12px;
+
+    background: #f0f4f3;
+
+    color: #687a76;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+
+.disclaimer strong {
+    color: #405b55;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #173d37;
+
+    color: #ffffff;
+}
+
+
+.footer-container {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 40px 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 40px;
+}
+
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.footer-logo .logo-icon {
+    background: #ffffff;
+    color: #0f766e;
+}
+
+
+.footer-logo strong {
+    display: block;
+
+    font-size: 16px;
+}
+
+
+.footer-logo span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #a9c1bb;
+
+    font-size: 11px;
+}
+
+
+.footer-brand > p {
+    margin-top: 14px;
+
+    max-width: 330px;
+
+    color: #afc3bf;
+
+    font-size: 13px;
+}
+
+
+.footer-links {
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+.footer-links a {
+    color: #c1d1cd;
+
+    font-size: 13px;
+}
+
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 17px 20px;
+
+    text-align: center;
+}
+
+
+.footer-bottom p {
+    color: #9eb5b0;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RISK LEVEL STYLES
+   JavaScript adds these classes
+   ========================================================= */
+
+
+/* LOW */
+
+.risk-low .risk-icon {
+    background: #e5f5ea;
+    color: #267342;
+}
+
+
+.risk-low .risk-score strong {
+    color: #267342;
+}
+
+
+/* MEDIUM */
+
+.risk-medium .risk-icon {
+    background: #fff3cd;
+    color: #8a6500;
+}
+
+
+.risk-medium .risk-score strong {
+    color: #9a7200;
+}
+
+
+/* HIGH */
+
+.risk-high .risk-icon {
+    background: #fde9e7;
+    color: #b33b31;
+}
+
+
+.risk-high .risk-score strong {
+    color: #b33b31;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 76px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #dce9e5;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+
+    .nav-links.active {
+        display: flex;
+    }
+
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+
+    .heading-container {
+        align-items: flex-start;
+    }
+
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .page-heading {
+        padding: 35px 18px;
+    }
+
+
+    .heading-container {
+        gap: 14px;
+    }
+
+
+    .heading-icon {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 14px;
+
+        font-size: 23px;
+    }
+
+
+    .page-heading h1 {
+        font-size: 32px;
+    }
+
+
+    .heading-description {
+        font-size: 13px;
+    }
+
+
+    .result-section {
+        padding: 30px 15px 50px;
+    }
+
+
+    .risk-card,
+    .content-card,
+    .recommendation-card {
+        padding: 21px;
+    }
+
+
+    .risk-card-top {
+        align-items: flex-start;
+    }
+
+
+    .risk-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+
+    .risk-info h2 {
+        font-size: 24px;
+    }
+
+
+    .recommendation-card {
+        gap: 13px;
+    }
+
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+
+    .action-btn {
+        width: 100%;
+    }
+
+
+    .emergency-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+
+    .emergency-content {
+        min-width: calc(100% - 65px);
+    }
+
+
+    .emergency-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .footer-container {
+        padding: 30px 0;
+    }
+
+
+    .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

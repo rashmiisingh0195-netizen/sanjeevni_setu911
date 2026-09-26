@@ -1,0 +1,962 @@
+/* =====================================================
+   SANJEEVANI SETU — DOCTORS PAGE
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #176b5b;
+    --primary-dark: #0f5145;
+    --primary-light: #e8f5f1;
+
+    --text: #18312d;
+    --text-light: #64736f;
+
+    --background: #f7faf9;
+    --white: #ffffff;
+
+    --border: #dfe9e5;
+
+    --success: #20885c;
+    --success-bg: #e8f7ef;
+
+    --danger: #b34b4b;
+    --danger-bg: #faeeee;
+
+    --shadow: 0 12px 35px rgba(22, 64, 55, 0.08);
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar {
+    height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+
+    font-family: "Fraunces", serif;
+    line-height: 1;
+}
+
+.logo-text span {
+    font-size: 18px;
+}
+
+.logo-text strong {
+    font-size: 18px;
+    color: var(--primary);
+}
+
+
+/* Navigation */
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 8px 0;
+
+    transition: 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid var(--primary);
+}
+
+
+/* Login */
+
+.login-btn {
+    text-decoration: none;
+
+    background: var(--primary);
+    color: white;
+
+    padding: 10px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+    background: var(--primary-dark);
+}
+
+
+/* Mobile menu button */
+
+.menu-btn {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    font-size: 25px;
+    cursor: pointer;
+
+    color: var(--text);
+}
+
+
+/* Mobile menu */
+
+.mobile-menu {
+    display: none;
+
+    background: white;
+    border-bottom: 1px solid var(--border);
+
+    padding: 15px 6%;
+}
+
+.mobile-menu a {
+    display: block;
+
+    padding: 12px 0;
+
+    color: var(--text);
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    padding: 75px 6% 100px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(23, 107, 91, 0.10),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #eef8f5,
+            #f8fbfa
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.eyebrow,
+.section-label {
+    display: inline-block;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+.hero h1 {
+    margin-top: 15px;
+
+    font-family: "Fraunces", serif;
+
+    font-size: clamp(40px, 6vw, 66px);
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    color: var(--text-light);
+
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   SEARCH SECTION
+   ===================================================== */
+
+.search-section {
+    padding: 0 6%;
+
+    margin-top: -45px;
+
+    position: relative;
+    z-index: 5;
+}
+
+.search-card {
+    max-width: 1200px;
+    margin: auto;
+
+    padding: 28px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.search-header h2 {
+    font-family: "Fraunces", serif;
+
+    font-size: 25px;
+}
+
+.search-header p {
+    margin-top: 4px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+.doctor-count {
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* Filters */
+
+.filters {
+    display: grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 700;
+
+    color: var(--text-light);
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: white;
+
+    padding: 0 13px;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(23, 107, 91, 0.08);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
+    padding-left: 38px;
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--text-light);
+
+    font-size: 19px;
+}
+
+
+/* =====================================================
+   DOCTORS SECTION
+   ===================================================== */
+
+.doctors-section {
+    max-width: 1200px;
+
+    margin: 70px auto 0;
+
+    padding: 0 6%;
+}
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+
+    font-family: "Fraunces", serif;
+
+    font-size: 32px;
+}
+
+.clear-btn {
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* Doctor grid */
+
+.doctor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* Doctor card */
+
+.doctor-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 5px 20px rgba(25, 65, 57, 0.05);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 14px 35px rgba(25, 65, 57, 0.10);
+}
+
+
+/* Doctor top */
+
+.doctor-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.doctor-avatar {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.doctor-info h3 {
+    font-family: "Fraunces", serif;
+
+    font-size: 19px;
+}
+
+.specialty {
+    margin-top: 3px;
+
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Details */
+
+.doctor-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.detail {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+.detail-icon {
+    width: 25px;
+
+    text-align: center;
+}
+
+
+/* Availability */
+
+.availability {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.availability.available {
+    color: var(--success);
+
+    background: var(--success-bg);
+}
+
+.availability.unavailable {
+    color: var(--danger);
+
+    background: var(--danger-bg);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+/* Card button */
+
+.book-btn {
+    width: 100%;
+
+    height: 43px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.book-btn:hover {
+    background: var(--primary-dark);
+}
+
+.book-btn:disabled {
+    background: #cbd5d1;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   NO RESULTS
+   ===================================================== */
+
+.no-results {
+    text-align: center;
+
+    padding: 60px 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+}
+
+.no-results-icon {
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+.no-results h3 {
+    font-family: "Fraunces", serif;
+
+    font-size: 23px;
+}
+
+.no-results p {
+    margin: 7px 0 20px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+
+.primary-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 0 20px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =====================================================
+   HELP SECTION
+   ===================================================== */
+
+.help-section {
+    max-width: 1200px;
+
+    margin: 70px auto;
+
+    padding: 0 6%;
+}
+
+.help-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    background: var(--primary-light);
+
+    border: 1px solid #cce8df;
+
+    border-radius: 16px;
+}
+
+.help-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 23px;
+}
+
+.help-content {
+    flex: 1;
+}
+
+.help-content h3 {
+    font-family: "Fraunces", serif;
+
+    font-size: 20px;
+}
+
+.help-content p {
+    margin-top: 4px;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    margin-top: 80px;
+
+    padding: 40px 6% 20px;
+
+    background: #153a33;
+
+    color: white;
+}
+
+.footer-content {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.footer-logo {
+    font-family: "Fraunces", serif;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.footer-content p {
+    margin-top: 7px;
+
+    color: #bdd0cb;
+
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #d8e6e2;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+
+    margin: 30px auto 0;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+
+    color: #9db8b1;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+    .filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .doctor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-links,
+    .nav-actions {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .mobile-menu.show {
+        display: block;
+    }
+
+    .hero {
+        padding: 60px 5% 85px;
+    }
+
+    .search-section {
+        padding: 0 5%;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctors-section {
+        padding: 0 5%;
+    }
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .help-section {
+        padding: 0 5%;
+    }
+
+    .help-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .search-card {
+        padding: 20px;
+    }
+
+    .search-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+}
