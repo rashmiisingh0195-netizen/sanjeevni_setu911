@@ -304,3 +304,32 @@ blockquote {
     gap: 16px;
   }
 }
+.account-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.login-button,
+.register-button {
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-button {
+    border: 1px solid #174d45;
+    color: #174d45;
+    background: white;
+}
+
+.register-button {
+    background: #174d45;
+    color: white;
+}
+
+.login-button:hover,
+.register-button:hover {
+    transform: translateY(-1px);
+}
