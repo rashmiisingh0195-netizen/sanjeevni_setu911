@@ -1,8 +1,8 @@
 /* =====================================================
-   SANJEEVANI SETU
-   REGISTER PAGE
-   Frontend-only version
+   SANJEEVANI SETU — ACCOUNT REGISTRATION
    ===================================================== */
+
+const API_URL = "http://localhost:3000";
 
 
 /* =====================================================
@@ -804,91 +804,39 @@ registerForm.addEventListener(
             "Creating account...";
 
 
-        /*
-         * FRONTEND-ONLY MODE
-         *
-         * We are not connecting to the backend yet.
-         *
-         * Later this section will send:
-         *
-         * name
-         * email
-         * mobile
-         * password
-         *
-         * to:
-         *
-         * POST /api/register
-         */
+        try {
+            const response = await fetch(`${API_URL}/api/register`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: fullName.value.trim(),
+                    email: email.value.trim(),
+                    mobile: mobile.value.trim(),
+                    password: password.value
+                })
+            });
 
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Could not create your account.");
+            }
 
-        await new Promise(
-            resolve =>
-                setTimeout(resolve, 1000)
-        );
-
-
-        /*
-         * Save only demo information.
-         *
-         * IMPORTANT:
-         * Do not store real passwords in localStorage.
-         *
-         * This is only a frontend demonstration.
-         */
-
-        const demoUser = {
-
-            name:
-                fullName.value.trim(),
-
-            email:
-                email.value.trim(),
-
-            mobile:
-                mobile.value.trim()
-
-        };
-
-
-        sessionStorage.setItem(
-            "sanjeevaniDemoUser",
-            JSON.stringify(demoUser)
-        );
-
-
-        /* Success */
-
-        showFormMessage(
-            "Account details validated successfully. Backend connection will be added next.",
-            "success"
-        );
-
-
-        buttonText.textContent =
-            "Account Ready";
-
-
-        /*
-         * For the frontend stage we don't
-         * automatically redirect.
-         *
-         * This lets you see the success message.
-         */
-
-
-        setTimeout(() => {
-
-            registerBtn.disabled = false;
-
-            registerBtn.classList.remove(
-                "loading"
+            sessionStorage.setItem("sanjeevaniUser", JSON.stringify(data.user));
+            showFormMessage("Account created. Opening your dashboard…", "success");
+            buttonText.textContent = "Account Created";
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            showFormMessage(
+                error instanceof TypeError
+                    ? "Cannot reach the server. Make sure it is running on port 3000."
+                    : error.message,
+                "error"
             );
 
-            buttonText.textContent =
-                "Create Account";
-
-        }, 2000);
+            registerBtn.disabled = false;
+            registerBtn.classList.remove("loading");
+            buttonText.textContent = "Create Account";
+        }
 
     }
 );
@@ -928,3 +876,4 @@ document.getElementById(
 
     }
 );
+
