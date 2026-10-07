@@ -106,6 +106,7 @@ const resultBadge = document.getElementById("resultBadge");
 const resultMessage = document.getElementById("resultMessage");
 const resultAction = document.getElementById("resultAction");
 const startOverBtn = document.getElementById("startOver");
+const nextSteps = document.getElementById("nextSteps");
 
 // The backend server from the /server folder. If it isn't running, the
 // symptom checker itself still works fully — only saving results and
@@ -130,6 +131,7 @@ form.addEventListener("submit", async (event) => {
   resultBadge.textContent = text.badge;
   resultMessage.textContent = text.message;
   resultAction.textContent = text.action;
+  showNextSteps(level);
   resultSection.dataset.level = level;
   resultSection.hidden = false;
 
@@ -142,7 +144,7 @@ form.addEventListener("submit", async (event) => {
   saveAssessment(selectedSymptoms, ageGroup, level);
 
   // For medium/high risk, offer real doctors to book with.
-  if (level === "medium" || level === "high") {
+  if (level === "medium"){
     showBookingOptions(level);
   } else {
     document.getElementById("booking").hidden = true;
@@ -153,6 +155,7 @@ startOverBtn.addEventListener("click", () => {
   form.reset();
   resultSection.hidden = true;
   document.getElementById("booking").hidden = true;
+  nextSteps.replaceChildren();
   form.scrollIntoView({ behavior: "smooth" });
 });
 
@@ -236,6 +239,33 @@ function selectDoctor(doctor) {
   bookingWithLabel.textContent = `Booking with ${doctor.name} (${doctor.location})`;
   bookingForm.hidden = false;
   bookingConfirmation.hidden = true;
+}
+function showNextSteps(level) {
+  nextSteps.replaceChildren();
+
+  const message = document.createElement("p");
+  const hospitalLink = document.createElement("a");
+
+  hospitalLink.href = "hospitals.html";
+  hospitalLink.textContent = "Find nearest hospitals";
+
+  if (level === "high") {
+    message.textContent =
+      "Seek urgent medical care now. Do not wait to try home care first.";
+    nextSteps.append(message, hospitalLink);
+    return;
+  }
+
+  if (level === "medium") {
+    message.textContent =
+      "Contact a healthcare professional or visit a clinic. If symptoms worsen, seek urgent care.";
+    nextSteps.append(message, hospitalLink);
+    return;
+  }
+
+  message.textContent =
+    "For mild symptoms, rest and drink fluids if you are able. Get medical help if symptoms worsen or new warning signs appear.";
+  nextSteps.append(message, hospitalLink);
 }
 
 bookingForm.addEventListener("submit", async (event) => {

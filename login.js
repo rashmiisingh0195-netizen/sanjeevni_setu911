@@ -38,9 +38,6 @@ const message =
 const guestButton =
     document.getElementById("guestButton");
 
-const registerLink =
-    document.getElementById("registerLink");
-
 const forgotPassword =
     document.getElementById("forgotPassword");
 
@@ -123,7 +120,7 @@ loginForm.addEventListener("submit", async function (event) {
         emailInput.value.trim();
 
     const password =
-        passwordInput.value.trim();
+        passwordInput.value;
 
 
     /* -----------------------------------------
@@ -337,23 +334,6 @@ guestButton.addEventListener("click", function () {
 
     window.location.href =
         "checker.html";
-
-});
-
-
-/* =========================================
-   REGISTER BUTTON
-   ========================================= */
-
-registerLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-
-    showMessage(
-        "Registration will be available soon.",
-        "success"
-    );
 
 });
 

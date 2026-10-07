@@ -24,6 +24,15 @@ const db = new Database(path.join(__dirname, "sanjeevani.db"));
 // "IF NOT EXISTS" means this is safe to run every time the server starts —
 // it won't wipe existing data.
 db.exec(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    mobile TEXT UNIQUE,
+    password TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+  
   CREATE TABLE IF NOT EXISTS doctors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
